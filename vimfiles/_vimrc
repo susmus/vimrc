@@ -241,3 +241,6 @@ set nu
 
 "--[ Omnicomplete
 set omnifunc=syntaxcomplete#Complete
+
+"--[ ctags path
+let Tlist_Ctags_Cmd = 'C:\Linuxtools\ctags58\ctags.exe'
