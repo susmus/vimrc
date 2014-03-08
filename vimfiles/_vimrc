@@ -9,8 +9,8 @@ filetype plugin indent on
 set background=dark
 colorscheme molokai
 if has('gui_running')
-  "set guifont=Lucida_Console:h10
-  set guifont=Consolas:h11
+  set guifont=Dina:h10
+  set guioptions=aAce
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> General
@@ -59,7 +59,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -178,7 +178,7 @@ map <leader>tm :tabmove
 "" Switch CWD to the directory of the open buffer
 "map <leader>cd :cd %:p:h<cr>:pwd<cr>
 "
-"" Specify the behavior when switching between buffers 
+"" Specify the behavior when switching between buffers
 "try
 "  set switchbuf=useopen,usetab,newtab
 "    set stal=2
@@ -245,11 +245,27 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType php set omnifunc=csscomplete#CompletePHP
 
 "--[ SuperTab Integration
 set completeopt-=previewtj
-let g:SuperTabDefaultCompletionType = ""
+"let g:SuperTabDefaultCompletionType = ""
 let g:SuperTabDefaultCompletionType = "context"
 
 "--[ ctags path
 let Tlist_Ctags_Cmd = 'C:\Linuxtools\ctags58\ctags.exe'
+
+"--[ ctrlp
+let g:ctrlp_use_caching=1
+let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_cache_dir='T:\_vimcache'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.log$'
+  \ }
+
+let g:ctrlp_map = '<F2>'
+let g:ctrlp_cmd = 'CtrlP'
+
+"--[ Tagbar
+nmap <F3> :TagbarToggle<CR>
