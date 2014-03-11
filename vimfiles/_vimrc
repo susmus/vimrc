@@ -6,10 +6,11 @@ execute pathogen#infect()
 filetype on
 filetype plugin indent on
 
-set background=dark
 colorscheme molokai
 if has('gui_running')
+  "set guifont=Lucida_Console:h10
   set guifont=Dina:h10
+  set lines=40 columns=80
   set guioptions=aAce
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -23,8 +24,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+"let mapleader = ","
+"set g:mapleader = ","
 
 " Fast saving
 "nmap <leader>w :w!<cr>
@@ -59,7 +60,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases
+" When searching try to be smart about cases 
 set smartcase
 
 " Highlight search results
@@ -92,9 +93,6 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 syntax on
-
-"set background=dark
-
 set encoding=utf8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Files, backups and undo
@@ -158,18 +156,20 @@ map <C-l> <C-W>l
 " move between tabs
 "map <C-Tab> gt
 "map <C-S-Tab> gT
+map <C-Tab> :MBEbn<CR>
+map <C-S-Tab> :MBEbp<CR>
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+"map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+"map <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+"map <leader>tn :tabnew<cr>
+"map <leader>to :tabonly<cr>
+"map <leader>tc :tabclose<cr>
+"map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -178,7 +178,7 @@ map <leader>tm :tabmove
 "" Switch CWD to the directory of the open buffer
 "map <leader>cd :cd %:p:h<cr>:pwd<cr>
 "
-"" Specify the behavior when switching between buffers
+"" Specify the behavior when switching between buffers 
 "try
 "  set switchbuf=useopen,usetab,newtab
 "    set stal=2
@@ -209,7 +209,7 @@ set laststatus=2
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nu
-
+set cursorline
 " Remap VIM 0 to first non-blank character
 "map 0 ^
 
@@ -241,21 +241,8 @@ set nu
 
 "--[ Omnicomplete
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType php set omnifunc=csscomplete#CompletePHP
-
-"--[ SuperTab Integration
-set completeopt-=previewtj
-"let g:SuperTabDefaultCompletionType = ""
-let g:SuperTabDefaultCompletionType = "context"
-
-"--[ ctags path
-let Tlist_Ctags_Cmd = 'C:\Linuxtools\ctags58\ctags.exe'
-
-"--[ ctrlp
+"
+"--[ CtrlP
 let g:ctrlp_use_caching=1
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_cache_dir='T:\_vimcache'
@@ -266,6 +253,30 @@ let g:ctrlp_custom_ignore = {
 
 let g:ctrlp_map = '<F2>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+"nnoremap <F4> :CtrlPBuffer<CR>
 
 "--[ Tagbar
-nmap <F3> :TagbarToggle<CR>
+nnoremap <F3> :TagbarToggle<CR>
+
+"--[ MiniBufExpl Colors
+hi MBEVisibleActive guifg=#A6DB29
+hi MBEVisibleChangedActive guifg=#F1266F
+hi MBEVisibleChanged guifg=#F1266F
+hi MBEVisibleNormal guifg=#5DC2D6
+hi MBEChanged guifg=#CD5907
+hi MBENormal guifg=#808080
+
+"--[ NERDTree
+"let g:NERDTreeWinPos = "left"
+
+"--[ SuperTab Integration
+"set completeopt-=previewtj
+"let g:SuperTabDefaultCompletionType = ""
+"let g:SuperTabDefaultCompletionType = "context"
+
+"--[ ctags path
+"let Tlist_Ctags_Cmd = 'C:\Linuxtools\ctags58\ctags.exe'
+let g:tagbar_ctags_bin = 'C:\Linuxtools\ctags58\ctags.exe'
